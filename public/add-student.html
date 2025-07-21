@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student - CertiScan</title>
+    <!-- We can reuse the same stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Manage Students</h1>
+        <p>Add new students to the database to enable certificate matching.</p>
+        <nav class="main-nav">
+    <a href="/">Upload Certificate</a>
+    <a href="/add-student.html" class="active">Add Student</a>
+    <a href="/manage-students.html">Manage Students</a>
+    <a href="/reports.html">Reports</a>
+</nav>
+    </header>
+
+    <main>
+        <div class="form-card">
+            <form id="addStudentForm">
+                <h2>Add New Student</h2>
+                <div class="input-group">
+                    <label for="studentName">Full Display Name</label>
+                    <input type="text" id="studentName" name="studentName" placeholder="e.g., Bhavesh Perumalla" required>
+                </div>
+                <div class="input-group">
+                    <label for="rollNo">Roll Number</label>
+                    <input type="text" id="rollNo" name="rollNo" placeholder="e.g., NPTEL24CS101..." required>
+                </div>
+                <button type="submit" id="add-student-button">Add Student</to>
+            </form>
+        </div>
+    </main>
+
+    <section id="status-section">
+        <div id="status-message"></div>
+    </section>
+
+    <!-- We'll use a small script for this page -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const addStudentForm = document.getElementById('addStudentForm');
+            const studentNameInput = document.getElementById('studentName');
+            const rollNoInput = document.getElementById('rollNo'); 
+            const statusMessage = document.getElementById('status-message');
+            const addButton = document.getElementById('add-student-button');
+
+            addStudentForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const studentName = studentNameInput.value.trim();
+                const rollNo = rollNoInput.value.trim(); 
+                if (!studentName||!rollNo) {
+                    alert('Please enter a student name.');
+                    return;
+                }
+
+                addButton.disabled = true;
+                addButton.textContent = 'Adding...';
+                statusMessage.style.display = 'none';
+                statusMessage.className = '';
+
+                 try {
+                    const response = await fetch('/students', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        // Send both fields in the body
+                        body: JSON.stringify({ displayName: studentName, rollNo: rollNo })
+                    });
+                    
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        statusMessage.textContent = result.message;
+                        statusMessage.classList.add('success');
+                        addStudentForm.reset(); // Clear the form
+                    } else {
+                        throw new Error(result.message || 'An unknown error occurred.');
+                    }
+                } catch (error) {
+                    statusMessage.textContent = error.message;
+                    statusMessage.classList.add('error');
+                } finally {
+                    statusMessage.style.display = 'block';
+                    addButton.disabled = false;
+                    addButton.textContent = 'Add Student';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

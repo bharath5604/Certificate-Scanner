@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CertiScan - Professional Certificate OCR</title>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Link to our stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   <!-- public/index.html -->
+
+<header>
+    <h1>CertiScan</h1>
+    <p>AI-Powered Certificate Data Extraction</p>
+    <!-- ADD THIS NAVIGATION BLOCK -->
+    <nav class="main-nav">
+    <a href="/" class="active">Upload Certificate</a>
+    <a href="/add-student.html">Add Student</a>
+    <a href="/manage-students.html">Manage Students</a>
+    <a href="/reports.html">Reports</a>
+</nav>
+</header>
+
+    <main>
+        <div class="uploader-card">
+            <form id="uploadForm">
+                <!-- Custom Upload Area -->
+                <label for="certificateFile" class="upload-area">
+                    <div class="upload-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2a1 1 0 0 1 1 1v10.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 1 1 1.414-1.414L11 13.586V3a1 1 0 0 1 1-1zM3 15a1 1 0 0 1 1-1h16a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1zm1 4a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1z"/>
+                        </svg>
+                    </div>
+                    <p><strong>Click to browse</strong> or drag & drop your file</p>
+                    <span id="file-name">No file selected</span>
+                </label>
+                <input type="file" name="certificate" id="certificateFile" required>
+                
+                <button type="submit" id="submit-button">Scan Certificate</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- The new, corrected structure -->
+<section id="feedback-section">
+    <div class="spinner-container" id="spinner">
+        <div class="spinner"></div>
+        <p>Processing... this may take a moment.</p>
+    </div>
+
+    <div id="status-message"></div>
+</section>
+
+<section id="results-section" style="display: none;">
+    <div class="results-card" id="results-container">
+        <h3>Extracted Data:</h3>
+        <pre id="results-data"></pre>
+    </div>
+</section>
+
+    <!-- Link to our script file -->
+    <script src="script.js"></script>
+</body>
+</html>

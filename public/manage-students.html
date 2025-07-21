@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Students - CertiScan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Manage Students</h1>
+        <p>View and edit existing student records.</p>
+        <nav class="main-nav">
+            <a href="/">Upload Certificate</a>
+            <a href="/add-student.html">Add Student</a>
+            <a href="/manage-students.html" class="active">Manage Students</a>
+            <a href="/reports.html">Reports</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="list-card">
+            <h2>All Students</h2>
+            <div class="student-list-header"> <!-- ADD THIS HEADER -->
+                <span>Display Name</span>
+                <span>Roll Number</span>
+            </div>
+            <div id="student-list-container">
+                <!-- Students will be dynamically loaded here -->
+                <div class="spinner-container" id="list-spinner" style="display: flex;">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for Editing a Student -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <h2>Edit Student Name</h2>
+            <form id="editStudentForm">
+                <input type="hidden" id="editStudentId">
+                <div class="input-group">
+                    <label for="editStudentName">New Display Name</label>
+                    <input type="text" id="editStudentName" required>
+                </div>
+                <div class="input-group">
+                    <label for="editRollNo">New Roll Number</label>
+                    <input type="text" id="editRollNo" required>
+                </div>
+                <button type="submit" id="save-edit-button">Save Changes</button>
+            </form>
+            <div id="edit-status-message"></div>
+        </div>
+    </div>
+
+    <script src="manage-students.js"></script>
+</body>
+</html>

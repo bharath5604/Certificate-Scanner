@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Data - CertiScan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Export All Data</h1>
+        <p>Download a complete list of all certificates for all students in a single Excel file.</p>
+        <nav class="main-nav">
+            <a href="/">Upload Certificate</a>
+            <a href="/add-student.html">Add Student</a>
+            <a href="/manage-students.html">Manage Students</a>
+            <a href="/reports.html">Reports</a>
+            <a href="/export.html" class="active">Export All</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-card">
+            <h2>Complete Data Export</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
+                Click the button below to generate and download an Excel file containing every certificate record in the database.
+            </p>
+            <button id="downloadAllBtn" class="download-btn excel">Download All Data as Excel</button>
+            <div id="export-status-message" style="margin-top: 1.5rem; text-align: center;"></div>
+        </div>
+    </main>
+
+    <!-- We only need the XLSX library for this page -->
+    <script src="/scripts/xlsx/xlsx.full.min.js"></script>
+
+    <script src="export.js"></script>
+</body>
+</html>

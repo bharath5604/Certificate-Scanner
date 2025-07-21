@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Reports - CertiScan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Student Reports</h1>
+        <p>Filter certificates by student roll number and download reports.</p>
+        <nav class="main-nav">
+            <a href="/">Upload Certificate</a>
+            <a href="/add-student.html">Add Student</a>
+            <a href="/manage-students.html">Manage Students</a>
+            <a href="/reports.html" class="active">Reports</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-card">
+            <form id="filterForm">
+                <h2>Filter Certificates</h2>
+                <div class="input-group">
+                    <label for="rollNoFilter">Enter Student Roll Number</label>
+                    <input type="text" id="rollNoFilter" placeholder="Search by Roll No...">
+                </div>
+                <button type="submit">Filter</button>
+            </form>
+        </div>
+
+        <div id="report-section" class="list-card" style="display: none; margin-top: 2rem;">
+            <div class="report-header">
+                <h2 id="report-student-name"></h2>
+                <!-- V-- TWO BUTTONS NOW --V -->
+                <!-- <button id="downloadPdfBtn" class="download-btn">Download as PDF</button> -->
+                <button id="downloadXlsxBtn" class="download-btn">Download as Excel</button>
+            </div>
+            <div id="certificate-report-list">
+                <!-- Filtered certificates will be loaded here -->
+            </div>
+        </div>
+        
+        <div id="report-status-message" style="margin-top: 1.5rem;"></div>
+
+    </main>
+
+    <!-- V-- ADDED XLSX LIBRARY SCRIPT --V -->
+    <!-- Include Report Generation Libraries -->
+    <script src="/scripts/jspdf/jspdf.umd.min.js"></script>
+    <script src="/scripts/jspdf-autotable/jspdf.plugin.autotable.min.js"></script>
+    <script src="/scripts/xlsx/xlsx.full.min.js"></script>
+
+    <script src="reports.js"></script>
+</body>
+</html>
